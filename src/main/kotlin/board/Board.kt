@@ -24,27 +24,24 @@ class Board(private val size: Int) {
 
     private fun checkWin(position: Position): Boolean {
 
-        var j = 0
         val m = get(position)
 
-        if (winSize <= size - position.x)
-            for (x in position.x + 1 until size)
-                if (get(position.copy(x = x)) == m)
-                    j++
-                else break
-        if (j >= winSize - 1) return true
+        var hw = 0
+        var vw = 0
 
+        for (i in 1 until winSize) {
+            if (hw == -1 && vw == -1) break
+            if (i + position.x < size && get(position.copy(x = position.x + i)) == m)
+                hw++
+            else hw = -1
+            if (i + position.y < size && get(position.copy(y = position.y + i)) == m)
+                vw++
+            else vw = -1
+        }
 
-        j = 0
-        if (winSize <= size - position.y)
-            for (y in position.y + 1 until size)
-                if (get(position.copy(y = y)) == m)
-                    j++
-                else break
+        if (vw >= winSize - 1 || hw >= winSize - 1) return true
 
-        if (j >= winSize - 1) return true
-
-        j = 0
+        var j = 0
         if (winSize <= size - position.x && winSize <= size - position.y)
             for (i in 1 until winSize)
                 if (position.x + i < size && position.y + i < size && get(
