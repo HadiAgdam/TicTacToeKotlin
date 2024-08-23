@@ -47,10 +47,10 @@ class Board(private val size: Int) {
         j = 0
         if (winSize <= size - position.x && winSize <= size - position.y)
             for (i in 1 until winSize)
-                if (position.x < size && position.y < size && get(
+                if (position.x + i < size && position.y + i < size && get(
                         position.copy(
-                            x = position.x + 1,
-                            y = position.y + 1
+                            x = position.x + i,
+                            y = position.y + i
                         )
                     ) == m
                 )
@@ -59,10 +59,23 @@ class Board(private val size: Int) {
         if (j >= winSize - 1) return true
 
 
-        // TODO from top right to bottom left
+        j = 0
+        if (position.y + winSize - 1 < size && position.x - winSize >= -1)
+            for (i in 1 until winSize) {
+                if (position.x - i >= 0 && position.y + i < size &&
+                    get(
+                        position.copy(
+                            x = position.x - i,
+                            y = position.y + i
+                        )
+                    ) == m
+                ) j++
+                else break
+            }
 
+        println("${position.x}, ${position.y} : $j")
 
-        return false
+        return j >= winSize - 1
     }
 
     fun checkWin(): Mark? {
