@@ -22,6 +22,19 @@ class Board(private val size: Int) {
             board[i] = Array(size) { Mark.BLANK }
     }
 
+    fun getBlanks(): List<Position> {
+        val result = ArrayList<Position>()
+
+        for (x in 0 until size) for (y in 0 until size)
+//            if (get(Position(x, y)) == Mark.BLANK) result.add(Position(x, y))
+            Position(x, y).apply {
+                if (get(this) == Mark.BLANK) result.add(this)
+            }
+
+
+        return result
+    }
+
     private fun checkWin(position: Position): Boolean {
 
         val m = get(position)
@@ -75,6 +88,7 @@ class Board(private val size: Int) {
         return j >= winSize - 1
     }
 
+    // returns the mark of winner if there is any
     fun checkWin(): Mark? {
 
         for (x in 0 until size) for (y in 0 until size) {
