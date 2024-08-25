@@ -1,6 +1,6 @@
 package board
 
-class Board(private val size: Int) {
+data class Board(private val size: Int) {
 
     private val winSize = when (size) {
         3 -> 3
