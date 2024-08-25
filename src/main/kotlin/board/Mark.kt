@@ -7,6 +7,7 @@ enum class Mark {
 
     fun opponent(): Mark {
         return if (this == X) O
-        else X
+        else if (this == O) X
+        else BLANK
     }
 }
