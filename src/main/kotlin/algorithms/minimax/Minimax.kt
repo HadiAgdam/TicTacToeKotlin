@@ -5,14 +5,15 @@ import board.Mark
 import board.Position
 
 
-fun minimax(): Int {
-    TODO()
+fun minimax(board: Board, c: Mark, depth: Int = 10): Int {
+    return 0
 }
 
 
-
 fun play(board: Board, c: Mark): Position {
-    val blanks = board.getBlanks()
+
+    val b = board.copy()
+    val blanks = b.getBlanks()
 
     var highestVal = Int.MIN_VALUE
     var highestPosition: Position? = null
@@ -20,7 +21,7 @@ fun play(board: Board, c: Mark): Position {
     for (blank in blanks) {
         board.set(blank, c)
 
-        val m = minimax()
+        val m = minimax(b, c)
         if (m > highestVal) {
             highestPosition = blank
             highestVal = m
@@ -29,5 +30,4 @@ fun play(board: Board, c: Mark): Position {
 
 
     return highestPosition!!
-
 }
