@@ -7,27 +7,29 @@ import kotlin.math.abs
 
 object Minimax {
     private fun minimax(board: Board, mark: Mark, depth: Int = 10): Int {
-        if (depth == 0) return 0
 
-        when (board.checkWin()) {
-            mark -> return depth
-            mark.opponent() -> return -depth
-            else -> {}
-        }
+        val blanks = board.getBlanks()
 
-        var highest = 0
+        var highestValue = 0
 
-        for (blank in board.getBlanks()) {
-            board.set(blank, mark.opponent())
-            val l = -minimax(board, mark.opponent(), depth - 1)
+        for (blank in blanks) {
+            board.set(blank, mark)
 
+            if (board.checkWin() == mark) {
+                board.set(blank, Mark.BLANK)
+                return depth
+            }
 
-            if (abs(l) > highest) highest = l
+            val v = -minimax(board, mark.opponent(), depth - 1)
+            if (abs(v) > highestValue)
+                highestValue = v
 
             board.set(blank, Mark.BLANK)
         }
 
-        return highest
+
+        return highestValue
+
     }
 
 
@@ -40,9 +42,22 @@ object Minimax {
 
 
         for (blank in blanks) {
-            board.set(blank, c)
 
-            val m = minimax(board, c)
+            board.set(blank, c.opponent())
+            if (board.checkWin() == c.opponent()) {
+                println()
+                board.print()
+                println()
+                return blank
+            }
+
+            board.set(blank, c)
+            if (board.checkWin() == c) {
+                println("returned win ${blank.x} ${blank.y}")
+                return blank
+            }
+
+            val m = -minimax(board, c.opponent())
 
             println("${blank.x} ${blank.y} : $m")
 
