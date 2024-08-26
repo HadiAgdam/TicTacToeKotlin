@@ -42,15 +42,18 @@ class MinimaxTest {
     }
 
 
-//    @Test
-//    fun createForkOpportunity() {
-//        val board = Board(3)
-//        board.set(Position(0, 0), Mark.O)
-//        board.set(Position(2, 2), Mark.O)
-//        board.set(Position(1, 1), Mark.X)
-//        Assertions.assertEquals(Position(0, 2), Minimax.play(board, Mark.O))
-//        board.clear()
-//    }
+    @Test
+    fun createForkOpportunity() {
+        val board = Board(3)
+        board.set(Position(0, 0), Mark.O)
+        board.set(Position(2, 2), Mark.O)
+        board.set(Position(1, 1), Mark.X)
+        println()
+        board.print()
+        println()
+        Assertions.assertEquals(Position(0, 2), Minimax.play(board, Mark.O))
+        board.clear()
+    }
 
 
     @Test
@@ -64,15 +67,6 @@ class MinimaxTest {
     }
 
 
-
-//    @Test
-//    fun preferCenterMove() {
-//        val board = Board(3)
-//        board.set(Position(0, 0), Mark.X)
-//        board.set(Position(2, 2), Mark.O)
-//        Assertions.assertEquals(Position(1, 1), Minimax.play(board, Mark.X))
-//        board.clear()
-//    }
 
 
     @Test
