@@ -83,7 +83,6 @@ data class Board(private val size: Int) {
                 else break
             }
 
-        println("${position.x}, ${position.y} : $j")
 
         return j >= winSize - 1
     }
@@ -100,6 +99,17 @@ data class Board(private val size: Int) {
         }
 
         return null
+    }
+
+
+    fun print() {
+        for (y in 0 until size) {
+            print("|\t")
+            for (x in 0 until size)
+                print("${board[x][y].toString().replace("BLANK", " ")}\t|\t")
+            println("\n-------------------------")
+        }
+
     }
 
 }
