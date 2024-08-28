@@ -1,11 +1,12 @@
 package algorithms.minimax
 
+import algorithms.Algorithm
 import board.Board
 import board.Mark
 import board.Position
 import kotlin.math.abs
 
-object Minimax {
+object Minimax : Algorithm() {
     private fun minimax(board: Board, mark: Mark, depth: Int = 10): Int {
 
         val blanks = board.getBlanks()
@@ -33,7 +34,7 @@ object Minimax {
     }
 
 
-    fun play(board: Board, c: Mark): Position {
+    override fun play(board: Board, c: Mark): Position {
 
         val blanks = board.getBlanks()
 
