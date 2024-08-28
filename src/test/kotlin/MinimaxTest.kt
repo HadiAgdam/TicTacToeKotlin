@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 
 class MinimaxTest {
 
+    private val algorithm = Minimax
 
     @Test
     fun testPlay() {
@@ -14,7 +15,7 @@ class MinimaxTest {
 
         board.set(Position(0, 0), Mark.X)
         board.set(Position(1, 1), Mark.X)
-        Assertions.assertEquals(Position(2, 2), Minimax.play(board, Mark.O))
+        Assertions.assertEquals(Position(2, 2), algorithm.play(board, Mark.O))
         board.clear()
 
     }
@@ -25,7 +26,7 @@ class MinimaxTest {
         board.set(Position(0, 0), Mark.X)
         board.set(Position(0, 1), Mark.X)
         board.set(Position(1, 0), Mark.O)
-        Assertions.assertEquals(Position(0, 2), Minimax.play(board, Mark.O))
+        Assertions.assertEquals(Position(0, 2), algorithm.play(board, Mark.O))
         board.clear()
     }
 
@@ -37,7 +38,7 @@ class MinimaxTest {
         board.set(Position(1, 0), Mark.X)
         board.set(Position(1, 1), Mark.O)
         board.set(Position(2, 1), Mark.O)
-        Assertions.assertEquals(Position(0, 1), Minimax.play(board, Mark.O))
+        Assertions.assertEquals(Position(0, 1), algorithm.play(board, Mark.O))
         board.clear()
     }
 
@@ -51,7 +52,7 @@ class MinimaxTest {
         println()
         board.print()
         println()
-        Assertions.assertEquals(Position(0, 2), Minimax.play(board, Mark.O))
+        Assertions.assertEquals(Position(0, 2), algorithm.play(board, Mark.O))
         board.clear()
     }
 
@@ -62,11 +63,9 @@ class MinimaxTest {
         board.set(Position(0, 0), Mark.X)
         board.set(Position(2, 2), Mark.X)
         board.set(Position(1, 0), Mark.O)
-        Assertions.assertNotEquals(Position(0, 2), Minimax.play(board, Mark.O))
+        Assertions.assertNotEquals(Position(0, 2), algorithm.play(board, Mark.O))
         board.clear()
     }
-
-
 
 
     @Test
@@ -96,6 +95,17 @@ class MinimaxTest {
                     move == Position(1, 2) || move == Position(2, 1)
         )
         board.clear()
+    }
+
+
+    fun passTests() {
+        testPlay()
+        blockOpponentWinningMove()
+        chooseWinningMove()
+        createForkOpportunity()
+        avoidOpponentFork()
+        takeEmptyCorner()
+        takeEmptySide()
     }
 
 
