@@ -7,6 +7,6 @@ import board.Position
 abstract class Algorithm {
 
 
-    abstract fun play(board: Board, c: Mark): Position
+    abstract fun play(board: Board, c: Mark): Position?
 
 }
