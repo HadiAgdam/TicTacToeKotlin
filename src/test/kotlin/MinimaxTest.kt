@@ -9,6 +9,7 @@ class MinimaxTest {
 
     private val algorithm = Minimax
 
+
     @Test
     fun testPlay() {
         val board = Board(3)
