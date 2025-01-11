@@ -1,4 +1,4 @@
-# Tic Tac Toe CLI with AI
+# Tic Tac Toe Kotlin
 
 This repository contains a Tic Tac Toe game implemented in Kotlin, featuring a command-line interface (CLI) and an extensible AI system. The game supports customizable AI algorithms, with a default implementation of the Minimax algorithm.
 
